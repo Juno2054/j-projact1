@@ -48,8 +48,15 @@
     border-radius: 10px;
 
 }
-.movieCardBox > p,h1{
-    font-size:  25px;
+.movieCardBox > p{
+    font-size: 25px;
+    line-height: 1.8;
+
+}
+.movieCardBox > h3{
+    font-size:  35px;
+    border: solid 3px black;
+    border-radius: 10px;
 
 }
 
