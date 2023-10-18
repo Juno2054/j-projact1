@@ -1,3 +1,4 @@
+//TMDB에서 가져온 API값?
 const options = {
     method: 'GET',
     headers: {
@@ -5,16 +6,36 @@ const options = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0NWRjZGNlZGRkZjhkNDI4Y2I3OWM4NGIwMjRhMTRlMSIsInN1YiI6IjY1MmY1NWZkZWE4NGM3MDBlYmEzYmE1NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.8LFsIlXwYf9t_oyF__moPEpaQDXxfTROtQSGaTTAaCc'
     }
   };
+// url 길이가 너무길어서 상수  dbUrl에 담아둠
   const dbUrl ='https://api.themoviedb.org/3/movie/top_rated?language=KO-KR&page=1'
   fetch(dbUrl, options)
-    .then(response => response.json())
-    .then(data => {
+    .then(response => response.json()) //api데이터 가져오기
+    .then(data => {                    // 가져온데이터 를사용  실행하기
         let indexData= data['results'];
-        const cardList = document.querySelector('.movieCardBox');
-        // cardList.innerHTML = 'dd';
+        const cardList = document.querySelector('.movieCardList');
+        //movieCardList 찾아서 자식요소로 cardlist 추가하기
+        cardList.innerHTML = '';
 
+        indexData.forEach((valeu) => {
+            let myTitle = valeu['title'];
+            let myOverView = valeu['overview'];
+            let myPosterPath = valeu['poster_path'];
+            let myVoteAverage = valeu['vote_average'];
+            let myId = valeu['id'];
+
+            let temp_html = `        
+            <div class="movieCardBox" data-id="${myId}">
+            <img src="https://image.tmdb.org/t/p/w500${myPosterPath}" alt="">
+            <h3>영화 제목: ${myTitle}</h3>
+            <p>영화 개요: ${myOverView}</p>
+            <p>평점 평균:  ${myVoteAverage}</p>
+        </div>`;
+        cardList.insertAdjacentHTML('beforeend',temp_html);
+        });
     })
     .catch(err => console.error(err));
+
+
 
     {
         "page"; 1,
