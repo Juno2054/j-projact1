@@ -15,22 +15,21 @@ fetch(dbUrl, options)
         let indexData= data['results'];
         const cardList = document.querySelector('.movieCardList');
         //movieCardList 찾아서 자식요소로 cardlist 추가하기
-        cardList.innerHTML = '';
 
+        cardList.innerHTML = '';
         indexData.forEach((i) => {
             let myTitle = i['title'];
             let myOverView = i['overview'];
             let myPosterPath = i['poster_path'];
             let myVoteAverage = i['vote_average'];
             let myId = i['id'];
-
             let temp_html = `        
             <div class="movieCardBox" data-id="${myId}">
             <img src="https://image.tmdb.org/t/p/w500${myPosterPath}" alt="">
             <h3>영화 제목: ${myTitle}</h3>
             <p>영화 개요: ${myOverView}</p>
             <p>평점 평균:  ${myVoteAverage}</p>
-        </div>`;
+            </div>`;
         cardList.insertAdjacentHTML('beforeend',temp_html);
         });
 
@@ -42,15 +41,55 @@ fetch(dbUrl, options)
 
             })
         })
+        
+
+        //검색
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
         searchBtn.addEventListener('click',(e)=>{
-            e.preventDefault();
-            const val = searchInput.value;
-            console.log(val);
+            e.preventDefault(); // 버튼눌러도 새로고침 안되게 
+        const val = searchInput.value; // 서치인풋에 들어가는 값 val에 넣기 
+        const filterData = indexData.filter(item => item.title.includes(val)); // 인풋값이랑 일치하는 타이틀 데이터 
+            //input 값에 들어간 제목이름과 일치하는 데이터 가져와서 보여주기
+
+            if(filterData.length === 0){ 
+            alert('검색결과 없음') // 필터 데이터에 맞지않으면 알럿창 띄우기
+          }
+          else{
+          // const cardList = document.querySelector('.movieCardList'); 포함
+            cardList.innerHTML = ''; // 데이터 가져와서 보여주기전에 카드리스트 비워두기
+              filterData.forEach((a)=>{   
+              let myTitle = a['title'];
+              let myOverView = a['overview'];
+              let myPosterPath = a['poster_path'];
+              let myVoteAverage = a['vote_average'];
+              let myId = a['id'];
+              let temp_html = `        
+              <div class="movieCardBox" data-id="${myId}">
+              <img src="https://image.tmdb.org/t/p/w500${myPosterPath}" alt="">
+              <h3>영화 제목: ${myTitle}</h3>
+              <p>영화 개요: ${myOverView}</p>
+              <p>평점 평균:  ${myVoteAverage}</p>
+              </div>`;
+          cardList.insertAdjacentHTML('beforeend',temp_html);
+          });
+
+            
+          }
+            
+
+            // console.log(filterData); // 인풋 값 들어오는지 확인  // 잘들어오는 상태 
+            
         })
     })
+//--------------------------------------------------------------------
 
+
+
+
+
+
+//---------------------------------------------
 
     
 
