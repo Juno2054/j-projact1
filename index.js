@@ -58,7 +58,7 @@ fetch(dbUrl, options)
           else{
           // const cardList = document.querySelector('.movieCardList'); 포함
             cardList.innerHTML = ''; // 데이터 가져와서 보여주기전에 카드리스트 비워두기
-              filterData.forEach((a)=>{   
+              filterData.forEach((a)=>{    //필터 데이터에 담아둔 데이터 중에서 title 이름 맞는거 띄워줌
               let myTitle = a['title'];
               let myOverView = a['overview'];
               let myPosterPath = a['poster_path'];
