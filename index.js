@@ -25,10 +25,10 @@ fetch(dbUrl, options)
             let myId = i['id'];
             let temp_html = `        
             <div class="movieCardBox" data-id="${myId}">
-            <img src="https://image.tmdb.org/t/p/w500${myPosterPath}" alt="">
-            <h3>영화 제목: ${myTitle}</h3>
-            <p>영화 개요: ${myOverView}</p>
-            <p>평점 평균:  ${myVoteAverage}</p>
+            <img src="https://image.tmdb.org/t/p/w300${myPosterPath}" alt="">
+            <h3> ${myTitle}</h3>
+            <h4>${myOverView}<h4>
+            <h3>평점  ${myVoteAverage} 점</h3>
             </div>`;
         cardList.insertAdjacentHTML('beforeend',temp_html);
         });
@@ -67,7 +67,7 @@ fetch(dbUrl, options)
               let temp_html = `        
               <div class="movieCardBox" data-id="${myId}">
               <img src="https://image.tmdb.org/t/p/w500${myPosterPath}" alt="">
-              <h3>영화 제목: ${myTitle}</h3>
+              <h3>영화 제목</h3><h3> ${myTitle}</h3>
               <p>영화 개요: ${myOverView}</p>
               <p>평점 평균:  ${myVoteAverage}</p>
               </div>`;

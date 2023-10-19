@@ -85,10 +85,11 @@ body >p,h3{
     0 0 75px rgb(179, 179, 179),0 0 150px rgb(179, 179, 179);
     border: double 6px white;
 }
-.movieCardBox > p{
+.movieCardBox > p,h4{
     font-size: 20px;
     line-height: 1.8;
     color: aliceblue;
+    text-shadow: 3px #000000;
 }
 .movieCardBox > h3{
     font-size:  30px;
