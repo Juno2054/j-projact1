@@ -46,14 +46,14 @@ fetch(dbUrl, options)
         //검색
         const searchInput = document.getElementById('searchInput');
         const searchBtn = document.getElementById('searchBtn');
-        searchBtn.addEventListener('click',(e)=>{
+        searchBtn.addEventListener('submit',(e)=>{
             e.preventDefault(); // 버튼눌러도 새로고침 안되게 
         const val = searchInput.value; // 서치인풋에 들어가는 값 val에 넣기 
         const filterData = indexData.filter(item => item.title.includes(val)); // 인풋값이랑 일치하는 타이틀 데이터 
             //input 값에 들어간 제목이름과 일치하는 데이터 가져와서 보여주기
 
             if(filterData.length === 0){ 
-            alert('검색결과 없음') // 필터 데이터에 맞지않으면 알럿창 띄우기
+            alert('검색결과 없음'); // 필터 데이터에 맞지않으면 알럿창 띄우기
           }
           else{
           // const cardList = document.querySelector('.movieCardList'); 포함
@@ -66,10 +66,10 @@ fetch(dbUrl, options)
               let myId = a['id'];
               let temp_html = `        
               <div class="movieCardBox" data-id="${myId}">
-              <img src="https://image.tmdb.org/t/p/w500${myPosterPath}" alt="">
-              <h3>영화 제목</h3><h3> ${myTitle}</h3>
-              <p>영화 개요: ${myOverView}</p>
-              <p>평점 평균:  ${myVoteAverage}</p>
+              <img src="https://image.tmdb.org/t/p/w300${myPosterPath}" alt="">
+              <h3> ${myTitle}</h3>
+              <h4>${myOverView}<h4>
+              <h3>평점  ${myVoteAverage} 점</h3>
               </div>`;
           cardList.insertAdjacentHTML('beforeend',temp_html);
           });
