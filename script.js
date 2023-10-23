@@ -15,9 +15,9 @@ fetch(dbUrl, options)
         let indexData= data['results'];
         const cardList = document.querySelector('.movieCardList');
         //movieCardList 찾아서 자식요소로 cardlist 추가하기
-
+      function 불러오기(불러올값){
         cardList.innerHTML = '';
-        indexData.forEach((i) => {
+        불러올값.forEach((i) => {
             let myTitle = i['title'];
             let myOverView = i['overview'];
             let myPosterPath = i['poster_path'];
@@ -32,7 +32,8 @@ fetch(dbUrl, options)
               </div>`;
         cardList.insertAdjacentHTML('beforeend',temp_html);
         });
-
+      }
+      불러오기(indexData);
         const clickMovieCardBOX = document.querySelectorAll('.movieCardBox');// 쿼리셀렉터로 클래스 지정?
         clickMovieCardBOX.forEach(card =>{
             card.addEventListener('click',function(){
@@ -45,7 +46,7 @@ fetch(dbUrl, options)
 
         //검색
         const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchform1');
+        const searchBtn = document.getElementById('searchForm1');
         searchBtn.addEventListener("submit",(e)=>{
             e.preventDefault(); // 버튼눌러도 새로고침 안되게 
         const val = searchInput.value; // 서치인풋에 들어가는 값 val에 넣기 
@@ -54,31 +55,9 @@ fetch(dbUrl, options)
 
             if(filterData.length === 0){ 
             alert('검색결과 없음') // 필터 데이터에 맞지않으면 알럿창 띄우기
-          }else if(filterData.length == "null"){ 
-            alert('검색결과 없음') // 필터 데이터에 맞지않으면 알럿창 띄우기
           }
-          
-
           else{
-          // const cardList = document.querySelector('.movieCardList'); 포함
-            cardList.innerHTML = ''; // 데이터 가져와서 보여주기전에 카드리스트 비워두기
-              filterData.forEach((a)=>{   
-              let myTitle = a['title'];
-              let myOverView = a['overview'];
-              let myPosterPath = a['poster_path'];
-              let myVoteAverage = a['vote_average'];
-              let myId = a['id'];
-              let temp_html = `        
-              <div class="movieCardBox" data-id="${myId}">
-              <img src="https://image.tmdb.org/t/p/w300${myPosterPath}" alt="">
-              <h3> ${myTitle}</h3>
-              <h4>${myOverView}<h4>
-              <h3>평점  ${myVoteAverage} 점</h3>
-              </div>`;
-          cardList.insertAdjacentHTML('beforeend',temp_html);
-          });
-
-            
+            불러오기(filterData); 
           }
             
 
